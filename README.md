@@ -2,11 +2,11 @@
 
 This is all of the files for our Course about Asp.NET - Creating Minimal APIs
 
-The Summary is: 2 Section • 12 Lessons • Total Duration: ___
+The Summary is: 3 Section • 28 Lessons • Total Duration: ___
 
 01. Introduction
 02. Basic Structure - Minimal API
-03. 
+03. Endpoints, Concepts, and Resources
 04. 
 05. 
 06. 
