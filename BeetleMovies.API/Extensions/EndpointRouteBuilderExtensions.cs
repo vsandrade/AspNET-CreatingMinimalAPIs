@@ -7,15 +7,21 @@ public static class EndpointRouteBuilderExtensions
     var moviesGroups = endpointRouteBuilder.MapGroup("/movies");
     var moviesGroupsWithId = moviesGroups.MapGroup("/{moviesId:int}");
 
+    var moviesGroupsWithIdFilters = endpointRouteBuilder.MapGroup("/movies/{moviesId:int}")
+      .AddEndpointFilter(new PerfectMoviesAreLockedFilter(2))
+      .AddEndpointFilter(new PerfectMoviesAreLockedFilter(5));
+
     moviesGroups.MapGet("", MoviesHandlers.GetMoviesAsync);
 
-    moviesGroups.MapPost("", MoviesHandlers.CreateMoviesAsync);
+    moviesGroups.MapPost("", MoviesHandlers.CreateMoviesAsync)
+      .AddEndpointFilter<ValidateAnnotationFilter>();
 
     moviesGroupsWithId.MapGet("", MoviesHandlers.GetMoviesById).WithName("GetMovies");
 
-    moviesGroupsWithId.MapPut("", MoviesHandlers.UpdateMoviesAsync);
+    moviesGroupsWithIdFilters.MapPut("", MoviesHandlers.UpdateMoviesAsync);
 
-    moviesGroupsWithId.MapDelete("", MoviesHandlers.DeleteMoviesAsync);
+    moviesGroupsWithIdFilters.MapDelete("", MoviesHandlers.DeleteMoviesAsync)
+      .AddEndpointFilter<LogNotFoundResponseFilter>();
   }
 
   public static void RegisterDirectorsEndpoints(this IEndpointRouteBuilder endpointRouteBuilder)
