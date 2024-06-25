@@ -10,6 +10,7 @@ public static class MoviesHandlers
   public static async Task<Results<NoContent, Ok<IEnumerable<MovieDTO>>>> GetMoviesAsync (
     BeetleMoviesContext context,
     IMapper mapper,
+    ILogger<MovieDTO> logger,
     [FromQuery(Name = "movieName")] string? title)
   {
     var movieEntity = await context.Movies
@@ -18,9 +19,15 @@ public static class MoviesHandlers
                                   .ToListAsync();
 
     if (movieEntity.Count <= 0 || movieEntity == null)
+    {
+      logger.LogInformation($"Movie not found. Param: {title}");
       return TypedResults.NoContent();
+    }
     else
+    {
+      logger.LogInformation($"Movie found. Return: {movieEntity[0].Title}");
       return TypedResults.Ok(mapper.Map<IEnumerable<MovieDTO>>(movieEntity));
+    }
   }
 
   public static async Task<Results<NotFound, Ok<MovieDTO>>> GetMoviesById (

@@ -22,5 +22,8 @@ public static class EndpointRouteBuilderExtensions
   {
     var directorsGroups = endpointRouteBuilder.MapGroup("/movies/{moviesId:int}/directors");
     directorsGroups.MapGet("", DirectorsHandlers.GetDirectorsAsync);
+    directorsGroups.MapPost("", () => {
+      throw new NotImplementedException();
+    });
   }
 }
