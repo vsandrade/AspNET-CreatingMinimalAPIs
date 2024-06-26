@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace BeetleMovies.API;
 
-public class BeetleMoviesContext(DbContextOptions<BeetleMoviesContext> options) : DbContext(options) 
+public class BeetleMoviesContext(DbContextOptions<BeetleMoviesContext> options) : IdentityDbContext(options) 
 {
   public DbSet<Movie> Movies { get; set; }
   public DbSet<Director> Directors { get; set; }
