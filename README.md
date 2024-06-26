@@ -2,7 +2,7 @@
 
 This is all of the files for our Course about Asp.NET - Creating Minimal APIs
 
-The Summary is: Section 8 • 74 Lessons • Total Duration: ___
+The Summary is: Section 9 • 75 Lessons • Total Duration: +7 hours
 
 01. Introduction
 02. Basic Structure - Minimal API
@@ -12,7 +12,8 @@ The Summary is: Section 8 • 74 Lessons • Total Duration: ___
 06. Exceptions and Logs
 07. Filters and Validations
 08. Swagger & ASP.NET Identity
-09. 
+09. File Uploading (Coming soon...)
+10. Conclusion
 
 
 If you want to see this link course, really in action [original site](https://www.programadamente.com.br).
